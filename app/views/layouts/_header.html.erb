@@ -3,13 +3,19 @@
 <%#logo%>
 <div class="">
   <%= link_to "Flashcard App", root_path, class: "text-xl" %>
-  <img src="" alt="">
 </div>
 
 <%#sign-up%>
 <nav>
-  <a href="#" class=" text-gray-400 hover:text-gray-300 mr-1">Log in</a>
-  <a href="#" class="rounded-md p-2 text-slate-400 bg-indigo-700 hover:bg-indigo-800">Sign up</a>
+  <% if current_user %>
+    <div class="flex">
+    <%= link_to "Account", edit_user_registration_path, class: "text-gray-400 hover:text-gray-300 mr-4" %>
+    <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "text-gray-400 hover:text-gray-300 mr-1" %>
+    </div>
+  <% else %>
+    <%= link_to "Log in", new_user_session_path, class: "text-gray-400 hover:text-gray-300 mr-1" %>
+    <%= link_to "Sign up", new_user_registration_path , class: "rounded-md p-2 text-slate-400 bg-indigo-700 hover:bg-indigo-800"%>
+  <%end%>
 </nav>
 
 </header>
