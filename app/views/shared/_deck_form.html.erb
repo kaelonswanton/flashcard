@@ -1,0 +1,7 @@
+<div class=" justify-center flex">
+  <%= form_with(model: @deck, local: true) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.submit "Create" %>
+  <% end %>
+</div>

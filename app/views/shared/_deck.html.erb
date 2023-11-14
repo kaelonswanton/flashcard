@@ -1,0 +1,10 @@
+<% if current_user.decks.present? %>
+  <div class="divide-y-2 divide-gray-800">
+    <% @decks.each do |deck| %>
+      <div class="text-indigo-600 mb-2 py-2 ">
+        <%= deck.name %>
+        <%= button_to "Delete", deck, method: :delete, onclick: "return confirm('Are you sure?');", class: "text-gray-300 hover:text-gray-200" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
