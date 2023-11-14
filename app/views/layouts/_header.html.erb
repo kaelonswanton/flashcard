@@ -1,9 +1,16 @@
 <header class="my-4 flex justify-between mx-72">
 
 <%#logo%>
-<div class="">
-  <%= link_to "Flashcard App", root_path, class: "text-xl" %>
-</div>
+<nav class="flex">
+  <%= link_to "Flashcard App", root_path, class: "text-xl text-indigo-600 hover:text-indigo-400" %>
+  <% if current_user %>
+    <ul class="flex my-auto ml-6 text-xl">
+      <li class="mr-3 hover:text-gray-300"> <%= link_to "Decks", decks_path %> </li>
+      <li class="mr-3 hover:text-gray-300"> <%= link_to "Add", '#' %> </li>
+      <li class="hover:text-gray-300"> <%= link_to "Search", '#' %> </li>
+    </ul>
+  <% end %>
+</nav>
 
 <%#sign-up%>
 <nav>
