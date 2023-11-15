@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :decks, path: 'decks'
+  get 'review/index'
+  get 'cards/new'
+  resources :decks
+  resources :flashcards
 
   devise_for :users
   get 'home/about'

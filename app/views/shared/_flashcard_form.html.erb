@@ -1,0 +1,23 @@
+<%= form_with(model: @flashcard) do |f| %>
+  <div class="">
+
+    <div class="flex">
+      <%= f.label :deck_id, "Deck"%>
+      <%= f.collection_select(:deck_id, current_user.decks, :id, :name, { prompt: "Choose a Deck" }, class: "rounded-lg") %>
+    </div>
+
+    <div class="">
+      <%= f.label :front, "Front"%>
+      <%= f.text_field :front %>
+    </div>
+
+    <div class="">
+      <%= f.label :back, "Back"%>
+      <%= f.text_field :back %>
+    </div>
+
+    <div class="">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

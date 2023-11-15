@@ -5,8 +5,15 @@ class DecksController < ApplicationController
     @decks = current_user.decks.all
   end
 
+  def show
+    @deck = current_user.decks.find(params[:id])
+  end
+
   def create
-    @deck = current_user.decks.build(deck_params)
+    @deck = Deck.new(deck_params)
+    @deck.user_id = current_user.id
+
+
     if @deck.save
       flash[:message] = "Deck created successfully!"
       redirect_to decks_path
@@ -17,9 +24,9 @@ class DecksController < ApplicationController
   end
 
   def destroy
-    @decks = current_user.decks
-    @deck = current_user.decks.find(params[:id])
-    @deck.destroy
+    decks = current_user.decks
+    deck = current_user.decks.find(params[:id])
+    deck.destroy
     flash[:message] = "Deck deleted successfully!"
     redirect_to decks_path
   end
