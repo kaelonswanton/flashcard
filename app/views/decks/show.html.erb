@@ -3,8 +3,12 @@
 </div>
 
 <% @deck.flashcards.each do |flashcard| %>
-  <div>
+  <div class="flex">
     <%= flashcard.front %> - <%= flashcard.back %>
+    <%= button_to "Delete", flashcard, method: :delete, data: { turbo_confirm: "Are you sure" }, class: "text-gray-300 hover:text-gray-200 ml-8" %>
+
   </div>
 <% end %>
+
+<div class="text-blue-500 hover:text-blue-400"><%= link_to "Click here to add a card", new_flashcard_path  %> </div>
 

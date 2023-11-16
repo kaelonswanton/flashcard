@@ -7,11 +7,19 @@ class FlashcardsController < ApplicationController
     @flashcard = Flashcard.new(flashcard_params)
     @flashcard.difficulty = 0
     if @flashcard.save
-      flash.now[:message] = "Card added successfully!"
+      flash[:message] = "Flashcard added successfully!"
       redirect_to new_flashcard_path
     else
       render new_flashcard_path, status: :unprocessable_entity 
     end
+  end
+
+  def destroy
+    deck_id = params[:id]
+    flashcard = Flashcard.find(params[:id])
+    flashcard.destroy
+    flash[:message] = "Flashcard destroyed successfully!"
+    redirect_to deck_id
   end
 
   private
