@@ -7,6 +7,7 @@ class DecksController < ApplicationController
 
   def show
     @deck = current_user.decks.find(params[:id])
+    @flashcards = @deck.flashcards
   end
 
   def create
