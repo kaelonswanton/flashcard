@@ -1,0 +1,19 @@
+<%= form_with(model: @flashcard) do |f| %>
+  <div class="">
+
+
+    <div class="mb-4 text-indigo-600">
+      <%= f.label :front, "Front", class: "pr-10"%>
+      <%= f.text_field :front, class: "rounded-lg w-72 " %>
+    </div>
+
+    <div class="mb-4 text-indigo-600">
+      <%= f.label :back, "Back", class: "pr-10"%>
+      <%= f.text_field :back, class: "rounded-lg w-72" %>
+    </div>
+
+    <div class="text-indigo-600">
+      <%= f.submit "Update", class: "bg-indigo-700 p-2 rounded-lg hover:bg-indigo-800 text-slate-400"%>
+    </div>
+  </div>
+<% end %>

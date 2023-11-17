@@ -14,9 +14,24 @@ class DecksController < ApplicationController
     @deck = Deck.new(deck_params)
     @deck.user_id = current_user.id
 
-
     if @deck.save
       flash[:message] = "Deck created successfully!"
+      redirect_to decks_path
+    else
+      @decks = current_user.decks
+      render 'decks/index', status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @deck = current_user.decks.find(params[:id])
+  end
+
+  def update
+    @deck = current_user.decks.find(params[:id])
+
+    if @deck.update(deck_params)
+      flash[:message] = "Deck updated successfully!"
       redirect_to decks_path
     else
       @decks = current_user.decks

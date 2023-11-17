@@ -6,6 +6,7 @@
   <div class="flex">
     <%= flashcard.front %> - <%= flashcard.back %>
     <%= button_to "Delete", flashcard, method: :delete, data: { turbo_confirm: "Are you sure" }, class: "text-gray-300 hover:text-gray-200 ml-8" %>
+    <%= link_to "Edit Flashcard", edit_flashcard_path(flashcard), class: "text-gray-300 hover:text-gray-200 ml-8" %>
 
   </div>
 <% end %>
