@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'review/index'
   get 'cards/new'
   resources :decks
   resources :flashcards
+  get '/decks/:id/review', to: 'flashcards#review', as: 'decks_review'
 
   devise_for :users
   get 'home/about'
@@ -10,5 +10,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#about"
+
+  # resources :flashcards do
+  #   member do
+  #     patch 'update_difficulty'
+  #   end
+  # end
 
 end

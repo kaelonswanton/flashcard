@@ -5,7 +5,7 @@
 
         <div class="flex flex-col">
           <%= link_to deck.name, deck_path(deck) %>
-          <%= button_to "Review", '#', class: "rounded-md p-2 text-slate-400 bg-indigo-700 hover:bg-indigo-800" %>
+          <%= link_to "Review", decks_review_path(deck), class: "rounded-md p-2 text-slate-400 bg-indigo-700 hover:bg-indigo-800" %>
         </div>
 
         <div class="">

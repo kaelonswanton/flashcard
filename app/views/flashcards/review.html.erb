@@ -1,0 +1,26 @@
+
+<div class="bg-gray-700  ">
+  <div class=" text-6xl flex flex-col items-center">
+  <% @flashcards.each do |flashcard| %>
+    <p> <%= flashcard.front %> </p>
+    <div class=""> <p> <%= flashcard.back %> </p> </div>
+    <%= button_to "Show Answer", '#', class: "text-base px-4 mb-12 mt-16" %>
+
+    <% end %>
+  </div>
+
+  <div class="flex justify-between mt-20">
+
+    <div class="flex justify-start items-end">
+      <%= link_to 'Previous', decks_review_path(page: @page - 1) if @page > 0 %>
+    </div>
+
+   
+    
+    <div class="flex justify-end items-end">
+      <%= link_to 'Next', decks_review_path(page: @page +1) if @page < @fetched_flashcards.length / @card_per_page - 1  %>
+    </div>
+    
+  </div>
+
+</div>

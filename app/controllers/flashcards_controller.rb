@@ -37,6 +37,28 @@ class FlashcardsController < ApplicationController
     redirect_to deck_path(deck_id)
   end
 
+  def review
+    @deck = current_user.decks.find(params[:id])
+    @fetched_flashcards = @deck.flashcards.order(difficulty: :asc, lastupdated: :asc).limit(20)
+    @card_per_page = 1
+    @page = params.fetch(:page, 0).to_i
+    @flashcards = @fetched_flashcards.offset(@page * 1).limit(1)
+
+    # @flashcard = @flashcards.first
+
+  end
+
+  # def update_difficulty
+  #   @flashcard = Flashcard.find(params[:id])
+
+  #   if @flashcard.update(difficulty: params[:difficulty].to_i)
+  #     flash[:success] = "Flashcard difficulty updated successfully!"
+  #   else
+  #     flash[:message] = "Save unsuccessful"
+  #   end
+  # end
+
+
   private
     def flashcard_params
       params.require(:flashcard).permit(:front, :back, :deck_id)
