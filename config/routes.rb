@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  get 'cards/new'
   resources :decks
   resources :flashcards
+  
   get '/decks/:id/review', to: 'flashcards#review', as: 'decks_review'
+ 
+
 
   devise_for :users
   get 'home/about'

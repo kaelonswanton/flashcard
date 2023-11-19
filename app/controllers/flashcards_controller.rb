@@ -27,6 +27,7 @@ class FlashcardsController < ApplicationController
     else
       render 'decks/index', status: :unprocessable_entity
     end
+
   end
 
   def destroy
@@ -39,24 +40,27 @@ class FlashcardsController < ApplicationController
 
   def review
     @deck = current_user.decks.find(params[:id])
+
+    # pagination
     @fetched_flashcards = @deck.flashcards.order(difficulty: :asc, lastupdated: :asc).limit(20)
     @card_per_page = 1
     @page = params.fetch(:page, 0).to_i
     @flashcards = @fetched_flashcards.offset(@page * 1).limit(1)
 
-    # @flashcard = @flashcards.first
 
   end
 
-  # def update_difficulty
-  #   @flashcard = Flashcard.find(params[:id])
-
-  #   if @flashcard.update(difficulty: params[:difficulty].to_i)
-  #     flash[:success] = "Flashcard difficulty updated successfully!"
-  #   else
-  #     flash[:message] = "Save unsuccessful"
-  #   end
-  # end
+  def difficulty_update
+    # update form
+    @flashcard = @flashcards.first
+    if params[:rating] == "Easy"
+      @flashcard.difficulty = 1
+    elsif params[:rating] == "Medium"
+      @flashcard.update(difficulty: 2)
+    elsif params[:rating] == "Hard"
+      @flashcard.update(difficulty: 3)
+    end
+  end
 
 
   private
