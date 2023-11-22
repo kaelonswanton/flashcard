@@ -1,7 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  plugins: [require("daisyui")],
 
   content: [
     './public/*.html',
@@ -17,6 +16,7 @@ module.exports = {
     },
   },
   plugins: [
+    require("daisyui"),
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),

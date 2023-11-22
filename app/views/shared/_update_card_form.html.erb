@@ -1,4 +1,4 @@
-<%= form_with(model: @flashcard, local: true) do |f| %>
+<%= form_with(model: @flashcard, local: true, method: :post) do |f| %>
   <%= f.submit "Easy", name: "rating", value: "Easy" %>
   <%= f.submit "Medium", name: "rating", value: "Medium" %>
   <%= f.submit "Hard", name: "rating", value: "Hard" %>
