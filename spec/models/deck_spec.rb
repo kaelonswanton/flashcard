@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Deck, type: :model do
+  
   it 'is invalid without a name' do
     deck = Deck.new(name: nil)
     expect(deck).to_not be_valid
@@ -11,6 +12,4 @@ RSpec.describe Deck, type: :model do
     deck2 = Deck.new(name: 'test')
     expect(deck2).to_not be_valid
   end
-
-
 end

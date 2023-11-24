@@ -6,8 +6,7 @@
   <% if current_user %>
     <ul class="flex my-auto ml-6 text-xl">
       <li class="mr-3 hover:text-gray-300"> <%= link_to "Decks", decks_path %> </li>
-      <li class="mr-3 hover:text-gray-300"> <%= link_to "Add", new_flashcard_path %> </li>
-      <li class="hover:text-gray-300"> <%= link_to "Search", '#' %> </li>
+      <li class="mr-3 hover:text-gray-300"> <%= link_to "Create Flashcard", new_flashcard_path %> </li>
     </ul>
   <% end %>
 </nav>

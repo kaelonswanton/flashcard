@@ -22,7 +22,7 @@ class FlashcardsController < ApplicationController
     @flashcard = Flashcard.find(params[:id])
 
     if @flashcard.update(flashcard_params) #it seems to process the create action. problem with form? or maybe finding the id in activerecord so it defaults to create instead of update?
-      flash[:message] = "Flashcard successfully updated!"
+      flash[:message] = "Flashcard updated successfully!"
       redirect_to decks_path
     else
       render 'decks/index', status: :unprocessable_entity
@@ -34,13 +34,9 @@ class FlashcardsController < ApplicationController
     flashcard = Flashcard.find(params[:id])
     deck_id = flashcard.deck.id
     flashcard.destroy
-    flash[:message] = "Flashcard destroyed successfully!"
+    flash[:message] = "Flashcard deleted successfully!"
     redirect_to deck_path(deck_id)
   end
-
-  
-
-
 
   private
     def flashcard_params

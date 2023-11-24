@@ -12,8 +12,8 @@
         <div class="dropdown dropdown-bottom">
           <label tabindex="0" class="btn m-1 bg-indigo-700 hover:bg-indigo-800">Actions</label>
           <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-gray-800 rounded-box w-52">
-            <li><%= link_to "Edit name", edit_deck_path(deck), method: :delete, class: "text-gray-300 hover:text-gray-200" %></li>
-            <li><%= link_to "Delete", deck_path(deck), method: :delete, class: "text-gray-300 hover:text-gray-200" %></li>
+            <li><%= link_to "Edit name", edit_deck_path(deck), class: "text-gray-300 hover:text-gray-200" %></li>
+            <li><%= button_to "Delete", deck_path(deck), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-gray-300 hover:text-gray-200" %></li>
           </ul>
         </div>
 
