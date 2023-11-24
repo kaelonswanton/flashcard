@@ -68,14 +68,16 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'faker'
+  gem 'launchy'
 
 end
 
 gem 'tailwindcss-rails'
-gem 'faker'
 gem 'pagy'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 gem "devise", "~> 4.9"
