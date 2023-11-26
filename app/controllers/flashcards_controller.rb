@@ -21,7 +21,7 @@ class FlashcardsController < ApplicationController
   def update
     @flashcard = Flashcard.find(params[:id])
 
-    if @flashcard.update(flashcard_params) #it seems to process the create action. problem with form? or maybe finding the id in activerecord so it defaults to create instead of update?
+    if @flashcard.update(flashcard_params)
       flash[:message] = "Flashcard updated successfully!"
       redirect_to decks_path
     else
@@ -36,6 +36,9 @@ class FlashcardsController < ApplicationController
     flashcard.destroy
     flash[:message] = "Flashcard deleted successfully!"
     redirect_to deck_path(deck_id)
+  end
+
+  def index
   end
 
   private
