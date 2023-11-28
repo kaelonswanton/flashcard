@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_16_093340) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_28_035757) do
   create_table "decks", force: :cascade do |t|
     t.string "name"
     t.integer "user_id", null: false
@@ -23,11 +23,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_16_093340) do
   create_table "flashcards", force: :cascade do |t|
     t.string "front"
     t.string "back"
-    t.integer "difficulty"
     t.integer "deck_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["deck_id"], name: "index_flashcards_on_deck_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "difficulty"
+    t.float "average_rating"
+    t.datetime "next_review_at"
+    t.integer "flashcard_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flashcard_id"], name: "index_reviews_on_flashcard_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,4 +55,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_16_093340) do
 
   add_foreign_key "decks", "users"
   add_foreign_key "flashcards", "decks"
+  add_foreign_key "reviews", "flashcards"
+  add_foreign_key "reviews", "users"
 end

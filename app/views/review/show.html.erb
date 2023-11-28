@@ -14,7 +14,7 @@
    <%= render 'shared/update_card_form'%>
     
     <div class="flex justify-end items-end">
-      <% if params[:id].to_i < @fetched_flashcards.count - 1 %>
+      <% if params[:id].to_i < session[:fetched_flashcards].count - 1 %>
         <%= link_to 'Next Card', deck_review_path(@deck, id: params[:id].to_i + 1) %>
       <% else %>
         <%= link_to 'Finish Deck', decks_path %>

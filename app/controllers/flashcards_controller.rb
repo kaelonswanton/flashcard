@@ -5,7 +5,6 @@ class FlashcardsController < ApplicationController
 
   def create
     @flashcard = Flashcard.new(flashcard_params)
-    @flashcard.difficulty = 0
     if @flashcard.save
       flash[:message] = "Flashcard added successfully!"
       redirect_to new_flashcard_path
