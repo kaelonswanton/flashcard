@@ -9,4 +9,7 @@ Rails.application.routes.draw do
     resources :review, only: [:show, :update, :destroy]
   end
 
+  #resets the session when user hits "review" button
+  get 'decks/:id/review_and_reset', to: 'decks#review_and_reset', as: 'review_and_reset'
+
 end

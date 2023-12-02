@@ -47,6 +47,11 @@ class DecksController < ApplicationController
     redirect_to decks_path
   end
 
+  def review_and_reset
+    session.delete(:fetched_flashcards)
+    redirect_to deck_review_path(params[:id], id: 0)
+  end
+
   private
     def deck_params
       params.require(:deck).permit(:name)

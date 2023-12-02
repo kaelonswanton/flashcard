@@ -26,4 +26,11 @@ RSpec.describe Flashcard, type: :model do
     flashcard2.valid?
     expect(flashcard2.errors[:back]).to include("has already been taken")
   end
+
+  it 'recalculates difficulty after save' do
+    flashcard = create(:flashcard)
+    flashcard.reviews.create(difficulty: 2)
+    flashcard.reviews.create(difficulty: 1)
+    expect(flashcard.difficulty).to eq(1.5)
+  end
 end
