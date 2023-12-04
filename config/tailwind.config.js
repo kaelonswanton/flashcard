@@ -13,6 +13,10 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      colors: {
+        'color-primary': '#4338CA', // Corresponds to indigo-700
+        'color-secondary': '#3730A3' // Corresponds to indigo-800
+      }
     },
   },
   plugins: [

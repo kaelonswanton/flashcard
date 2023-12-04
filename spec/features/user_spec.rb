@@ -20,7 +20,7 @@ feature 'User' do
     user = create(:user)
     sign_in(user)
     create(:deck, name: 'test', user: user)
-    click_link 'Create Flashcard'
+    click_link 'Add'
     select 'test', from: 'Deck'
     fill_in 'Front', with: 'front'
     fill_in 'Back', with: 'back'

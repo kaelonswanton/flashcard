@@ -81,3 +81,5 @@ group :development, :test do
   gem 'factory_bot_rails'
 end
 gem "devise", "~> 4.9"
+
+gem "ransack", "~> 4.1"

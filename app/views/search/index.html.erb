@@ -1,0 +1,26 @@
+<%= render 'shared/search_form'%>
+<h1> <%= pluralize(@decks.count, "Result") if params[:q].present? %> </h1>
+
+<% if params[:q].present? %>
+<div class="overflow-x-auto">
+  <table class="table">
+    <%# head %>
+    <thead>
+      <tr>
+        <th><%= sort_link(@q, :name, "Name", default_order: :asc) %></th>
+        <th><%= sort_link(@q, :updated_at, "Last Modified") %></th>
+      </tr>
+    </thead>
+    <%# body %>
+      <tbody class="">
+        <% @decks.each do |deck| %>
+          <tr class="hover">
+            <td><%= link_to deck.name, deck %> </td>
+            <td><%= deck.updated_at.strftime("%B %d, %Y") %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
+  </table>
+</div>

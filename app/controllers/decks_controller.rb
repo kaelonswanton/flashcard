@@ -1,12 +1,13 @@
 class DecksController < ApplicationController
   before_action :authenticate_user!
+
   def index
     @deck = current_user.decks.build
     @decks = current_user.decks.all
   end
 
   def show
-    @deck = current_user.decks.find(params[:id])
+    @deck = Deck.find(params[:id])
     @flashcards = @deck.flashcards
   end
 
@@ -52,6 +53,20 @@ class DecksController < ApplicationController
     redirect_to deck_review_path(params[:id], id: 0)
   end
 
+  def duplicate_deck
+    original_deck = current_user.decks.find(params[:id])
+    new_deck = origin_deck.dup
+    new_deck.user = current_user
+    new_deck.save
+
+    #iterate over each card; dupe it
+    original_deck.flashcards.each do |flashcard|
+      new_flashcard = flashcard.dup
+      new_flashcard.deck = new_deck
+      new_flashcard.save
+    end
+  end
+  
   private
     def deck_params
       params.require(:deck).permit(:name)

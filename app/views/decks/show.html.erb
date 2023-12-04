@@ -3,14 +3,38 @@
 <h1>Cards in this deck: <%= @flashcards.count %></h1>
 </div>
 
-<% @deck.flashcards.each do |flashcard| %>
-  <div class="flex">
-    <%= flashcard.front %> - <%= flashcard.back %>
-    <%= button_to "Delete", flashcard, method: :delete, data: { turbo_confirm: "Are you sure" }, class: "text-gray-300 hover:text-gray-200 ml-8" %>
-    <%= link_to "Edit Flashcard", edit_flashcard_path(flashcard), class: "text-gray-300 hover:text-gray-200 ml-8" %>
+<div class="">
+  <table class="table">
+  <%# header %>
+    <thead>
+      <tr>
+        <th>Front</th>
+        <th>Back</th>
+        <th>Last Updated At</th>
+      </tr>
+    </thead>
+    <%# body %>
+    <tbody>
+     <% @flashcards.each do |flashcard| %>
+      <tr>
+        <td><%= flashcard.front %>
+        <td><%= flashcard.back %>
+        <td><%= flashcard.updated_at.strftime("%B %d, %Y at %I:%m %p") %>
+        <%# dropdown menu %>
+        <td> 
+          <details class="dropdown">
+          <summary class="m-1 btn bg-color-primary hover:bg-color-secondary ">Actions</summary>
+          <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+            <li><a><%= button_to "Delete", flashcard, method: :delete, data: { turbo_confirm: "Are you sure" }, class: "text-gray-300 hover:text-gray-200 ml-8" %> </a></li>
+            <li><a><%= link_to "Edit Flashcard", edit_flashcard_path(flashcard), class: "text-gray-300 hover:text-gray-200 ml-8" %></a></li>
+            </ul>
+          </details>
+        </td>
+      </tr>
+     <%end %>
+    </tbody>
+  </table>
+</div>
 
-  </div>
-<% end %>
-
-<div class="text-blue-500 hover:text-blue-400"><%= link_to "Click here to add a card", new_flashcard_path  %> </div>
+<div class="text-color-primary hover:text-color-secondary mt-8"><%= link_to "Click here to add a card", new_flashcard_path  %> </div>
 

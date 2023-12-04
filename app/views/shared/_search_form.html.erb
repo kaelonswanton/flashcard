@@ -1,0 +1,6 @@
+<%# search_form_for (@q) is a ransack gem %>
+<%# allows us to search for deck name or user email. %>
+<%= search_form_for(@q, url: search_path, method: :get) do |f| %>
+  <%= f.search_field :name_i_cont_any, placeholder: "Search a deck..." %>
+  <%= f.submit "Search", class: "btn bg-color-secondary hover:bg-color-primary mb-8" %>
+<% end %>
