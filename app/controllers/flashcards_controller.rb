@@ -1,4 +1,5 @@
 class FlashcardsController < ApplicationController
+  before_action :authenticate_user! 
   def new
     @flashcard = Flashcard.new
   end

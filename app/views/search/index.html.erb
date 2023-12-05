@@ -7,8 +7,9 @@
     <%# head %>
     <thead>
       <tr>
-        <th><%= sort_link(@q, :name, "Name", default_order: :asc) %></th>
+        <th><%= sort_link(@q, :name, "Deck Name", default_order: :asc) %></th>
         <th><%= sort_link(@q, :updated_at, "Last Modified") %></th>
+        <th><%= sort_link(@q, :username, "Username") %></th>
       </tr>
     </thead>
     <%# body %>
@@ -17,7 +18,7 @@
           <tr class="hover">
             <td><%= link_to deck.name, deck %> </td>
             <td><%= deck.updated_at.strftime("%B %d, %Y") %></td>
-            <td></td>
+            <td><%= link_to deck.user.username, user_path(deck.user)  %></td>
           </tr>
         <% end %>
       </tbody>

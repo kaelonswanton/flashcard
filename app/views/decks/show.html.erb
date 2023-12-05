@@ -20,16 +20,18 @@
         <td><%= flashcard.front %>
         <td><%= flashcard.back %>
         <td><%= flashcard.updated_at.strftime("%B %d, %Y at %I:%m %p") %>
-        <%# dropdown menu %>
-        <td> 
-          <details class="dropdown">
-          <summary class="m-1 btn bg-color-primary hover:bg-color-secondary ">Actions</summary>
-          <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-            <li><a><%= button_to "Delete", flashcard, method: :delete, data: { turbo_confirm: "Are you sure" }, class: "text-gray-300 hover:text-gray-200 ml-8" %> </a></li>
-            <li><a><%= link_to "Edit Flashcard", edit_flashcard_path(flashcard), class: "text-gray-300 hover:text-gray-200 ml-8" %></a></li>
-            </ul>
-          </details>
-        </td>
+        <% if current_user == flashcard.user %>
+          <%# dropdown menu %>
+          <td> 
+            <details class="dropdown">
+            <summary class="m-1 btn bg-color-primary hover:bg-color-secondary ">Actions</summary>
+            <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+              <li><a><%= button_to "Delete", flashcard, method: :delete, data: { turbo_confirm: "Are you sure" }, class: "text-gray-300 hover:text-gray-200 ml-8" %> </a></li>
+              <li><a><%= link_to "Edit Flashcard", edit_flashcard_path(flashcard), class: "text-gray-300 hover:text-gray-200 ml-8" %></a></li>
+              </ul>
+            </details>
+          </td>
+        <% end %>
       </tr>
      <%end %>
     </tbody>

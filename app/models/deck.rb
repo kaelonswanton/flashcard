@@ -10,5 +10,6 @@ class Deck < ApplicationRecord
     ["user"]
   end
 
-  validates :name, presence: true, length: { maximum: 30 }, uniqueness: { case_sensitive: false }
+  #uniqueness: { scope: :user_id } makes it so validations only occur for the specific user
+  validates :name, presence: true, length: { maximum: 30 }, uniqueness: { scope: :user_id, case_sensitive: false }
 end
