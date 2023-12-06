@@ -16,7 +16,7 @@
 <nav>
   <% if current_user %>
     <div class="flex">
-    <%= link_to "Account", edit_user_registration_path, class: "text-gray-400 hover:text-gray-300 mr-4" %>
+    <%= link_to "Edit Account", edit_user_registration_path, class: "text-gray-400 hover:text-gray-300 mr-4" %>
     <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "text-gray-400 hover:text-gray-300 mr-1" %>
     </div>
   <% else %>

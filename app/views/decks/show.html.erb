@@ -26,8 +26,8 @@
             <details class="dropdown">
             <summary class="m-1 btn bg-color-primary hover:bg-color-secondary ">Actions</summary>
             <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+              <li><%= link_to "Edit Flashcard", edit_flashcard_path(flashcard), class: "text-gray-300 hover:text-gray-200 ml-8" %></li>
               <li><a><%= button_to "Delete", flashcard, method: :delete, data: { turbo_confirm: "Are you sure" }, class: "text-gray-300 hover:text-gray-200 ml-8" %> </a></li>
-              <li><a><%= link_to "Edit Flashcard", edit_flashcard_path(flashcard), class: "text-gray-300 hover:text-gray-200 ml-8" %></a></li>
               </ul>
             </details>
           </td>
@@ -37,6 +37,6 @@
     </tbody>
   </table>
 </div>
-
-<div class="text-color-primary hover:text-color-secondary mt-8"><%= link_to "Click here to add a card", new_flashcard_path  %> </div>
-
+<% if current_user == @flashcards.first.user %>
+  <div class="text-color-primary hover:text-color-secondary mt-8"><%= link_to "Click here to add a card", new_flashcard_path  %> </div>
+<%end%>

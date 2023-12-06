@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :decks, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  validates :username, presence: true, uniqueness: true
 
   # Ransack gem - attributes allowed to be search
   def self.ransackable_attributes(auth_object = nil)

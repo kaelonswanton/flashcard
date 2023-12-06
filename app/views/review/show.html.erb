@@ -1,18 +1,16 @@
-<div class="bg-gray-700  ">
+<div class="bg-gray-700 px-4 ">
   <div class=" text-6xl flex flex-col items-center">
     <p> <%= @flashcard.front %> </p>
     <div class=""> <p> <%= @flashcard.back %> </p> </div>
     <%= button_to "Show Answer", '#', class: "text-base px-4 mb-12 mt-16" %>
   </div>
 
-  <div class="flex justify-between mt-20">
+   <div class="flex justify-center"><%= render 'shared/update_card_form'%></div>
 
+  <div class="flex justify-between mt-20">
     <div class="flex justify-start items-end">
       <%= link_to 'Previous Card', deck_review_path(@deck, id: params[:id].to_i - 1) unless params[:id].to_i == 0 %>
     </div>
-
-   <%= render 'shared/update_card_form'%>
-    
     <div class="flex justify-end items-end">
       <% if params[:id].to_i < session[:fetched_flashcards].count - 1 %>
         <%= link_to 'Next Card', deck_review_path(@deck, id: params[:id].to_i + 1) %>

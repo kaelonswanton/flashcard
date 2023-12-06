@@ -1,26 +1,26 @@
-<h2>Log in</h2>
+<h2 class="text-4xl flex justify-center mb-4">Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter email", class: "text-indigo-600 mb-4" %>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "Enter password", class: "text-indigo-600 mb-4" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="mb-4">
+      <%= f.check_box :remember_me, class: "mr-1" %>
+      <%= f.label :remember_me, class: "align-middle" %>
     </div>
   <% end %>
 
-  <div class="actions">
+  <div class="mb-4 btn bg-color-primary hover:bg-color-secondary">
     <%= f.submit "Log in" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+<h1>Not a user?</h1>
+<div class="link text-indigo-600"><%= render "devise/shared/links" %></div>

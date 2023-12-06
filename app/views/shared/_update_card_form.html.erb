@@ -1,7 +1,9 @@
 <%= form_with(url: deck_review_path(@deck), method: :patch) do |f| %>
   <%# Add in this to make the form get the URL id params. %>
-  <%= f.submit "Easy", name: "rating", value: "Easy" %>
-  <%= f.submit "Medium", name: "rating", value: "Medium" %>
-  <%= f.submit "Hard", name: "rating", value: "Hard" %>
+  <div class="flex">
+    <div class="mx-2 btn w-20"><%= f.submit "Easy", name: "rating", value: "Easy" %></div>
+    <div class="mx-2 btn w-20"><%= f.submit "Medium", name: "rating", value: "Medium" %></div>
+    <div class="mx-2 btn w-20"><%= f.submit "Hard", name: "rating", value: "Hard" %></div>
+  </div>
 <% end %>
 
