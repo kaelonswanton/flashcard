@@ -20,10 +20,11 @@ class FlashcardsController < ApplicationController
 
   def update
     @flashcard = Flashcard.find(params[:id])
+    @deck = @flashcard.deck
 
     if @flashcard.update(flashcard_params)
       flash[:message] = "Flashcard updated successfully!"
-      redirect_to decks_path
+      redirect_to deck_path(@deck)
     else
       render 'decks/index', status: :unprocessable_entity
     end

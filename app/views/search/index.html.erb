@@ -17,9 +17,9 @@
       <tbody class="">
         <% @decks.each do |deck| %>
           <tr class="hover">
-            <td><%= link_to deck.name, deck %> </td>
+            <td class="link text-color-primary"><%= link_to deck.name, deck %> </td>
             <td><%= deck.updated_at.strftime("%B %d, %Y") %></td>
-            <td><%= link_to deck.user.username, user_path(deck.user)  %></td>
+            <td class="link text-color-primary"><%= link_to deck.user.username, user_path(deck.user)  %></td>
           </tr>
         <% end %>
       </tbody>

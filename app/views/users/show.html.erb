@@ -8,9 +8,6 @@
 
         <div class=" flex justify-between items-center my-2">
           <div class=" text-blue-500 hover:text-blue-600"><%= link_to deck.name, deck_path(deck) %> </div>
-          <% if current_user != deck.user %>
-            <div class="btn m-1 bg-color-primary hover:bg-color-secondary">Add Deck</div>
-          <% end %>
         </div>
     <% end %>
   </div>

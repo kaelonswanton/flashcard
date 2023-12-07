@@ -3,10 +3,8 @@ Rails.application.routes.draw do
   root "home#about"
   get 'home/about'
   get 'search', to: 'search#index'
-  resources :decks
   resources :flashcards 
   resources :users, only: [:show]
-
   resources :decks do
     resources :review, only: [:show, :update, :destroy]
   end

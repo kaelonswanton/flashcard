@@ -48,24 +48,30 @@ class DecksController < ApplicationController
     redirect_to decks_path
   end
 
+  # Deck Review
   def review_and_reset
     session.delete(:fetched_flashcards)
     redirect_to deck_review_path(params[:id], id: 0)
   end
 
+  # Deck Duplicate
   def duplicate_deck
-    original_deck = current_user.decks.find(params[:id])
-    new_deck = origin_deck.dup
-    new_deck.user = current_user
-    new_deck.save
+  original_deck = Deck.find(params[:id])
+  new_deck = original_deck.dup
+  new_deck.user = current_user
 
-    #iterate over each card; dupe it
+  if new_deck.save
     original_deck.flashcards.each do |flashcard|
       new_flashcard = flashcard.dup
       new_flashcard.deck = new_deck
       new_flashcard.save
     end
+    redirect_to decks_path
+  else
+    flash[:message] = "You already have a deck with that name"
+    redirect_to deck_path(original_deck)
   end
+end
   
   private
     def deck_params
