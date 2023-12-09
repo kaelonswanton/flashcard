@@ -68,7 +68,7 @@ class DecksController < ApplicationController
     end
     redirect_to decks_path
   else
-    flash[:message] = "You already have a deck with that name"
+    flash[:message] = "You already have a deck with that name!"
     redirect_to deck_path(original_deck)
   end
 end

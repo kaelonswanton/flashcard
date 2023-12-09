@@ -8,15 +8,17 @@
     <%# head %>
     <thead>
       <tr>
+        <th>No.</th>
         <th><%= sort_link(@q, :name, "Deck Name", default_order: :asc) %></th>
         <th><%= sort_link(@q, :updated_at, "Last Modified") %></th>
-        <th><%= sort_link(@q, :username, "Username") %></th>
+        <th><%= sort_link(@q, :username, "Owner") %></th>
       </tr>
     </thead>
     <%# body %>
       <tbody class="">
-        <% @decks.each do |deck| %>
+        <% @decks.each_with_index do |deck, index| %>
           <tr class="hover">
+            <td><%= index + 1 %></td>
             <td class="link text-color-primary"><%= link_to deck.name, deck %> </td>
             <td><%= deck.updated_at.strftime("%B %d, %Y") %></td>
             <td class="link text-color-primary"><%= link_to deck.user.username, user_path(deck.user)  %></td>

@@ -1,4 +1,5 @@
 <h1 class="flex justify-center text-4xl mb-8">Create Flashcard:</h1>
+<%= render 'shared/errors', model: @flashcard %>
+<br>
 <%= render 'shared/flash' %>
 <%= render 'shared/flashcard_form' %>
-<%= render 'shared/errors', model: @flashcard %>

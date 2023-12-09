@@ -6,12 +6,12 @@
       <%= f.collection_select(:deck_id, current_user.decks, :id, :name, { prompt: "Choose a Deck" }, class: "rounded-lg w-72") %>
     </div>
 
-    <div class="mb-4 text-indigo-600">
+    <div class="mb-4 text-indigo-600 flex items-center">
       <%= f.label :front, "Front", class: "pr-10"%>
       <%= f.text_field :front, class: "rounded-lg w-72 " %>
     </div>
 
-    <div class="mb-4 text-indigo-600">
+    <div class="mb-4 text-indigo-600 flex items-center">
       <%= f.label :back, "Back", class: "pr-10"%>
       <%= f.text_field :back, class: "rounded-lg w-72" %>
     </div>
