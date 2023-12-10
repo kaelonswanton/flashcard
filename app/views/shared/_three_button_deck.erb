@@ -1,0 +1,26 @@
+<div class=" justify-center flex">
+  <%= form_with(model: @deck, local: true) do |f| %>
+    <div class="flex flex-col mt-2 text-black">
+      <%= f.text_field :name, placeholder: "Enter new deck name" %>
+      <%= f.submit "Create", class: "rounded-md p-2 text-slate-400 bg-color-primary hover:bg-color-secondary" %>
+    </div>
+  <% end %>
+</div>
+<div class="justify-center flex mt-2">
+  <div class="btn bg-color-primary hover:bg-color-secondary mr-2">
+    <%= link_to 'Get Shared Decks', search_path %>
+  </div>
+
+  <div class="btn bg-color-primary hover:bg-color-secondary">
+    <%= link_to 'My Shared Decks', shared_decks_path %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

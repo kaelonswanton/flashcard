@@ -20,6 +20,7 @@ class DecksController < ApplicationController
       redirect_to decks_path
     else
       @decks = current_user.decks
+      @pagy, @decks = pagy(@current_user.decks.all, items: 5)  
       render 'decks/index', status: :unprocessable_entity
     end
   end

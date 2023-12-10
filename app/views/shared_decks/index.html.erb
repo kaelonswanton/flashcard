@@ -1,0 +1,30 @@
+<h1 class="flex justify-center text-4xl mb-8"><%= "Your Shared Decks" %></h1>
+<% if @decks.empty? %>
+  <p class="text-indigo-600"><%= "You have no shared decks." %> <%= link_to 'You have not shared anything yet. To share a deck, click on Decks, and then Actions next to the deck you want to share.' '#' %></p>
+<% else %>
+  <div class="overflow-x-auto">
+    <table class="table">
+      <%# head %>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Deck Name</th>
+          <th>Last modified</th>
+        </tr>
+      </thead>
+      <%# body %>
+        <tbody class="">
+          <% @decks.each_with_index do |deck, index| %>
+            <tr class="hover">
+              <td><%= @pagy.offset + index + 1 %></td>
+              <td class="link text-color-primary"><%= link_to deck.name, deck %> </td>
+              <td><%= deck.updated_at.strftime("%B %d, %Y") %></td>
+              <td><%= button_to "Remove", '#', class: "btn bg-color-primary hover:bg-color-secondary" %>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
+<%end%>
+<br>
+  <%= pagy_nav(@pagy).html_safe %>

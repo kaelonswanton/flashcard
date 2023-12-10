@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_04_230018) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_10_064838) do
   create_table "decks", force: :cascade do |t|
     t.string "name"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "shared", default: false
     t.index ["name"], name: "index_decks_on_name"
     t.index ["user_id"], name: "index_decks_on_user_id"
   end
