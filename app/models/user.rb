@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   # Ransack gem - attributes allowed to be search
   def self.ransackable_attributes(auth_object = nil)
-    ["email"]
+    ["username"]
   end
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

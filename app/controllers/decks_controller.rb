@@ -3,12 +3,12 @@ class DecksController < ApplicationController
 
   def index
     @deck = current_user.decks.build
-    @decks = current_user.decks.all
+    @pagy, @decks = pagy(@current_user.decks.all, items: 5)  
   end
 
   def show
     @deck = Deck.find(params[:id])
-    @flashcards = @deck.flashcards
+    @pagy, @flashcards = pagy(@deck.flashcards, items: 5)
   end
 
   def create
@@ -66,6 +66,7 @@ class DecksController < ApplicationController
       new_flashcard.deck = new_deck
       new_flashcard.save
     end
+    flash[:message] = "Deck duplicated successfully!"
     redirect_to decks_path
   else
     flash[:message] = "You already have a deck with that name!"

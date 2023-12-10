@@ -16,7 +16,7 @@
         <tbody class="">
           <% @decks.each_with_index do |deck, index| %>
             <tr class="hover">
-              <td><%= index + 1 %></td>
+              <td><%= @pagy.offset + index + 1 %></td>
               <td class="link text-color-primary"><%= link_to deck.name, deck %> </td>
               <td><%= deck.updated_at.strftime("%B %d, %Y") %></td>
             </tr>
@@ -25,3 +25,5 @@
     </table>
   </div>
 <%end%>
+<br>
+  <%= pagy_nav(@pagy).html_safe %>

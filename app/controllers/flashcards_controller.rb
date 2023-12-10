@@ -39,8 +39,6 @@ class FlashcardsController < ApplicationController
     redirect_to deck_path(deck_id)
   end
 
-  def index
-  end
 
   private
     def flashcard_params

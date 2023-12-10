@@ -3,6 +3,7 @@
 </div>
 
 <div class="">
+  <h1 class="flex justify-center text-4xl"><%= @deck.name %></h1>
   <h1>Cards in this deck: <%= @flashcards.count %></h1>
 </div>
 
@@ -11,6 +12,7 @@
   <%# header %>
     <thead>
       <tr>
+        <th>No.</th>
         <th>Front</th>
         <th>Back</th>
         <th>Last Updated At</th>
@@ -18,8 +20,9 @@
     </thead>
     <%# body %>
     <tbody>
-     <% @flashcards.each do |flashcard| %>
+     <% @flashcards.each_with_index do |flashcard, index| %>
       <tr>
+        <td><%= @pagy.offset + index + 1 %>
         <td><%= flashcard.front %>
         <td><%= flashcard.back %>
         <td><%= flashcard.updated_at.strftime("%B %d, %Y at %I:%m %p") %>
@@ -46,3 +49,6 @@
 <% else %>
     <div class="btn bg-color-primary hover:bg-color-secondary mt-8"> <%= link_to 'Add Deck', duplicate_deck_path(@deck), method: :post %> </div>
 <% end %>
+<br>
+<br>
+<%= pagy_nav(@pagy).html_safe %>

@@ -1,4 +1,4 @@
-<h1 class="flex justify-center text-4xl mb-8">Search for a Deck or User</h1>
+<h1 class="flex justify-center text-4xl mb-8">Search for a Deck</h1>
 <div class="flex justify-center"><%= render 'shared/search_form'%> </div>
 <h1> <%= pluralize(@decks.count, "Result") if params[:q].present? %> </h1>
 
@@ -11,14 +11,14 @@
         <th>No.</th>
         <th><%= sort_link(@q, :name, "Deck Name", default_order: :asc) %></th>
         <th><%= sort_link(@q, :updated_at, "Last Modified") %></th>
-        <th><%= sort_link(@q, :username, "Owner") %></th>
+        <th><%= sort_link(@q, :user_username, "Owner") %></th>
       </tr>
     </thead>
     <%# body %>
       <tbody class="">
         <% @decks.each_with_index do |deck, index| %>
           <tr class="hover">
-            <td><%= index + 1 %></td>
+            <td><%= @pagy.offset + index + 1 %></td>
             <td class="link text-color-primary"><%= link_to deck.name, deck %> </td>
             <td><%= deck.updated_at.strftime("%B %d, %Y") %></td>
             <td class="link text-color-primary"><%= link_to deck.user.username, user_path(deck.user)  %></td>
@@ -28,3 +28,5 @@
     <% end %>
   </table>
 </div>
+<br>
+<%= pagy_nav(@pagy).html_safe %>
