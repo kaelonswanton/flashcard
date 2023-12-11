@@ -23,7 +23,7 @@ class Deck < ApplicationRecord
   end
 
   def cannot_share_already_shared_deck
-    if shared && shared_was
+    if shared_changed? && shared_was
       errors.add(:base, "Deck is already shared.")
     end
   end

@@ -2,7 +2,7 @@
   <div class="">
 
     <div class=" mb-4 text-indigo-600">
-      <%= f.label :deck_id, "Deck", class: "pr-10 "%>
+      <%= f.label :deck_id, "Deck", class: "pr-9 "%>
       <%= f.collection_select(:deck_id, current_user.decks, :id, :name, { prompt: "Choose a Deck" }, class: "rounded-lg w-72") %>
     </div>
 

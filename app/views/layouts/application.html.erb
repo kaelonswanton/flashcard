@@ -18,6 +18,12 @@
     <%#page-container %>
     <div class="mx-80">
 
+      <%# flash/error messages %>
+      <div class="">
+        <%= render 'shared/flash' %>
+        <%= render 'shared/flash_error' %>
+      </div>
+      
       <%#devise error messages %>
       <div>
         <p class=""><%= notice %></p>
