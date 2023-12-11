@@ -5,7 +5,17 @@ class SharedDecksController < ApplicationController
 
   def update
     @deck = current_user.decks.find(params[:id])
-    @deck.update(shared: true)
-    redirect_to shared_decks_path
+    if @deck.update(deck_params)
+      flash[:message] = @deck.shared ? "Deck shared successfully!" : "Deck unshared successfully!" 
+      redirect_to shared_decks_path
+    else
+      flash[:error] = @deck.errors.full_messages.join(", ")
+      redirect_to shared_decks_path
+    end
   end
+
+  private
+    def deck_params
+      params.require(:deck).permit(:shared)
+    end
 end
