@@ -1,0 +1,38 @@
+<h1 class="flex justify-center text-4xl mb-8">Search My Flashcards</h1>
+<div class="flex justify-center">
+  <%= search_form_for(@q, url: flashcards_searches_path, method: :get) do |f| %>
+    <%= f.search_field :front_i_cont_any, placeholder: "Search Flashcards..." %>
+    <%= f.submit "Search", class: "btn bg-color-secondary hover:bg-color-primary mb-8" %>
+  <% end %>
+</div>
+
+<% if params[:q].present? %>
+<div class="overflow-x-auto">
+  <table class="table">
+    <%# head %>
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Front</th>
+        <th>Back</th>
+        <th><%= sort_link(@q, :difficulty) %></th> 
+        <th><%= sort_link(@q, :deck_name) %></th>
+      </tr>
+    </thead>
+    <%# body %>
+      <tbody class="">
+        <% @flashcards.each_with_index do |flashcard, index| %>
+          <tr class="hover">
+            <td><%= @pagy.offset + index + 1 %></td>
+            <td><%= truncate(flashcard.front, length: 50) %> </td>
+            <td><%= truncate(flashcard.back, length: 50) %></td>
+            <td><%= difficulty_to_word(flashcard.difficulty) %>
+            <td class="link text-color-primary"><%= link_to flashcard.deck.name, deck_path(flashcard.deck_id) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
+  </table>
+</div>
+<br>
+<%= pagy_nav(@pagy).html_safe %>
