@@ -1,6 +1,10 @@
 <h1 class="flex justify-center text-4xl mb-8">Search for a Deck</h1>
-<div class="flex justify-center"><%= render 'shared/search_form'%> </div>
-<h1> <%= pluralize(@decks.count, "Result") if params[:q].present? %> </h1>
+<div class="flex justify-center">
+  <%= search_form_for(@q, url: decks_searches_path, method: :get) do |f| %>
+    <%= f.search_field :name_i_cont_any, placeholder: "Search a deck..." %>
+    <%= f.submit "Search", class: "btn bg-color-secondary hover:bg-color-primary mb-8" %>
+  <% end %>
+</div>
 
 <% if params[:q].present? %>
 <div class="overflow-x-auto">

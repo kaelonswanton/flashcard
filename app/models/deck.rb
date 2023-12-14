@@ -23,7 +23,8 @@ class Deck < ApplicationRecord
   end
 
   def cannot_share_already_shared_deck
-    if shared_changed? && shared_was
+    #this is to ensure a deck can be shared/name edited, but can't be double shared
+    if previous_changes.include?("shared") && shared
       errors.add(:base, "Deck is already shared.")
     end
   end

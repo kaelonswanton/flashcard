@@ -3,7 +3,8 @@ class DecksController < ApplicationController
 
   def index
     @deck = current_user.decks.build
-    @pagy, @decks = pagy(@current_user.decks.all, items: 5)  
+    @pagy, @decks = pagy(@current_user.decks.all, items: 5)
+    @ready_flashcards = @deck.flashcards.select { |flashcard| flashcard.ready_for_review? }
   end
 
   def show
@@ -21,7 +22,7 @@ class DecksController < ApplicationController
     else
       @decks = current_user.decks
       @pagy, @decks = pagy(@current_user.decks.all, items: 5)  
-      render 'decks/index', status: :unprocessable_entity
+      render decks_path, status: :unprocessable_entity
     end
   end
 
@@ -39,7 +40,7 @@ class DecksController < ApplicationController
     else
       @decks = current_user.decks
       @pagy, @decks = pagy(@current_user.decks.all, items: 5)  
-      render 'decks/index', status: :unprocessable_entity
+      render decks_path, status: :unprocessable_entity
     end
   end
 
@@ -67,6 +68,7 @@ class DecksController < ApplicationController
     original_deck.flashcards.each do |flashcard|
       new_flashcard = flashcard.dup
       new_flashcard.deck = new_deck
+      new_flashcard.difficulty = 4.0
       new_flashcard.save
     end
     flash[:message] = "Deck duplicated successfully!"

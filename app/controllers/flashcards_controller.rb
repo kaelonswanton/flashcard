@@ -26,7 +26,7 @@ class FlashcardsController < ApplicationController
       flash[:message] = "Flashcard updated successfully!"
       redirect_to deck_path(@deck)
     else
-      render 'decks/index', status: :unprocessable_entity
+      render decks_path, status: :unprocessable_entity
     end
 
   end

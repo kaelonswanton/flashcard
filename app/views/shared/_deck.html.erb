@@ -6,13 +6,14 @@
         <div class="">
           <%= link_to deck.name, deck_path(deck) %>
           <%= link_to "Review", review_and_reset_path(deck), class: "w-20 flex items-center justify-center rounded-md p-2 text-slate-400 bg-color-primary hover:bg-color-secondary mt-2" %></div>
+          <%= @ready_flashcards.count %>
 
         <%# daisyui dropdown %>
         <div class="dropdown dropdown-bottom">
           <label tabindex="0" class="btn m-1 bg-color-primary hover:bg-color-secondary">Actions</label>
           <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-gray-800 rounded-box w-52">
             <li><%= link_to "Edit name", edit_deck_path(deck), class: "text-gray-300 hover:text-gray-200" %></li>
-            <li><%= button_to "Share", shared_deck_path(deck, deck: { shared: true }), method: :patch, class: "text-gray-300 hover:text-gray-200"%>
+            <li><%= button_to "Share", decks_shared_deck_path(deck, deck: { shared: true }), method: :patch, class: "text-gray-300 hover:text-gray-200"%>
             <li><%= button_to "Delete", deck_path(deck), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-gray-300 hover:text-gray-200" %></li>
           </ul>
         </div>
