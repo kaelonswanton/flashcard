@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
       #Checks if any flashcards are ready for review
       ready_flashcards = @deck.flashcards.select { |flashcard| flashcard.ready_for_review? }
       if ready_flashcards.any?
-        session[:fetched_flashcards] = ready_flashcards.limit(20).pluck(:id)
+        session[:fetched_flashcards] = ready_flashcards.first(20).pluck(:id)
       else
         #If none ready for review, fetches based off difficulty
         session[:fetched_flashcards] = @deck.flashcards.order(difficulty: :desc).limit(20).pluck(:id)

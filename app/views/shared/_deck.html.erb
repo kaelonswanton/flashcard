@@ -2,12 +2,15 @@
   <div class="divide-y-2 divide-gray-800 ">
     <% @decks.each do |deck| %>
       <div class=" mb-2 py-2 flex justify-between items-center">
-
         <div class="">
           <%= link_to deck.name, deck_path(deck) %>
-          <%= link_to "Review", review_and_reset_path(deck), class: "w-20 flex items-center justify-center rounded-md p-2 text-slate-400 bg-color-primary hover:bg-color-secondary mt-2" %></div>
-          <%= @ready_flashcards.count %>
+          <div class="">
+            <%# Iterate over each flashcard, checking if ready_for_review? %>
+            <div class=" text-red-600"><%= deck.flashcards.select { |flashcard| flashcard.ready_for_review? }.count %></div>
+            <div class=" text-blue-300"><%= deck.flashcards.select { |flashcard| flashcard.new_flashcard? }.count %></div>
 
+            <%= link_to "Review", review_and_reset_path(deck), class: "w-20 flex items-center justify-center rounded-md p-2 text-slate-400 bg-color-primary hover:bg-color-secondary mt-2" %></div>
+          </div>
         <%# daisyui dropdown %>
         <div class="dropdown dropdown-bottom">
           <label tabindex="0" class="btn m-1 bg-color-primary hover:bg-color-secondary">Actions</label>

@@ -2,9 +2,8 @@ class DecksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @deck = current_user.decks.build
-    @pagy, @decks = pagy(@current_user.decks.all, items: 5)
-    @ready_flashcards = @deck.flashcards.select { |flashcard| flashcard.ready_for_review? }
+    @deck = current_user.decks.build #for model error
+    @pagy, @decks = pagy(current_user.decks.all, items: 5)
   end
 
   def show

@@ -20,7 +20,7 @@ class Flashcard < ApplicationRecord
     self.reviews.count < 3
   end
 
-  def new_card?
+  def new_flashcard?
     self.difficulty == 4.0
   end
 
