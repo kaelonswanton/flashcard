@@ -1,4 +1,35 @@
 <h1 class="flex justify-center text-4xl">My Decks:</h1>
 <%= render 'shared/errors', model: @deck %>
-<%= render 'shared/deck' %>
+<% if current_user.decks.present? %>
+  <div class="divide-y-2 divide-gray-800">
+  <% @decks.each do |deck| %>
+    <div>
+      <div class="flex">
+        <%= link_to deck.name, deck_path(deck) %>
+      </div> 
+      <div class="flex justify-between">
+        <div class="flex items-center">
+          <p><%= link_to "Review", review_and_reset_path(deck), class: "w-20 rounded-md p-3 text-slate-400 bg-color-primary hover:bg-color-secondary mt-2" %></p>
+          <div class="ml-4">
+            <p class="text-red-500"><%= deck.flashcards.select { |flashcard| flashcard.ready_for_review? }.count %></p>
+            <p class="text-blue-500"><%= deck.flashcards.select { |flashcard| flashcard.new_flashcard? }.count %></p>
+          </div>
+        </div>
+        <%# daisyui dropdown %>
+        <div class="dropdown dropdown-bottom">
+          <label tabindex="0" class="btn m-1 bg-color-primary hover:bg-color-secondary">Actions</label>
+          <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-gray-800 rounded-box w-52">
+            <li><%= link_to "Edit name", edit_deck_path(deck), class: "text-gray-300 hover:text-gray-200" %></li>
+            <li><%= button_to "Share", decks_shared_deck_path(deck, deck: { shared: true }), method: :patch, class: "text-gray-300 hover:text-gray-200"%>
+            <li><%= button_to "Delete", deck_path(deck), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-gray-300 hover:text-gray-200" %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% end %>
+<br>
+<%= pagy_nav(@pagy).html_safe%>
+
 <%= render 'shared/three_button_deck' %>
