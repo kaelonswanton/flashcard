@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'spec_helper'
 
 feature 'User' do
-  scenario "Creates, edits, and deletes a deck" do
+  scenario "Creates, edits, shares, and deletes a deck" do
     user = create(:user)
     sign_in(user)
     click_link 'Decks'
@@ -12,6 +12,7 @@ feature 'User' do
     fill_in 'Enter new deck name', with: 'test1'
     click_button 'Update'
     expect(page).to have_content('Deck updated successfully!')
+    #share deck code
     click_button 'Delete'
     expect(page).to have_content('Deck deleted successfully!')
   end
@@ -36,5 +37,18 @@ feature 'User' do
     click_link 'test'
     click_button 'Delete'
     expect(page).to have_content('Flashcard deleted successfully!')
+  end
+
+  scenario "Searches flashcards" do
+  end
+
+  scenario "Reviews a deck" do
+  end
+
+  scenario "Gets Shared Decks and duplicates it" do
+    #add a deck that is already public so it can be searched
+  end
+
+  scenario "Votes on a deck" do
   end
 end
