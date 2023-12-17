@@ -1,6 +1,7 @@
 class Deck < ApplicationRecord
   belongs_to :user
   has_many :flashcards, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
   # Ransack gem - attributes allowed to be search
   def self.ransackable_attributes(auth_object = nil)

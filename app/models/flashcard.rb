@@ -58,5 +58,4 @@ class Flashcard < ApplicationRecord
       self.difficulty = reviews.average(:difficulty)
       self.save!
     end
-
 end

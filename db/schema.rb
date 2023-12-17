@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_10_064838) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_16_132134) do
   create_table "decks", force: :cascade do |t|
     t.string "name"
     t.integer "user_id", null: false
@@ -54,8 +54,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_064838) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.string "type"
+    t.integer "user_id", null: false
+    t.integer "deck_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deck_id"], name: "index_votes_on_deck_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
   add_foreign_key "decks", "users"
   add_foreign_key "flashcards", "decks"
   add_foreign_key "reviews", "flashcards"
   add_foreign_key "reviews", "users"
+  add_foreign_key "votes", "decks"
+  add_foreign_key "votes", "users"
 end

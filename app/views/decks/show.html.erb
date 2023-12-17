@@ -1,6 +1,20 @@
 <div class="">
   <h1 class="flex justify-center text-4xl"><%= @deck.name %></h1>
-  <h1>Cards in this deck: <%= @flashcards.count %></h1>
+  <h1>
+    <div class="flex">
+      <h1 class="flex justify-start">Cards in this deck: <%= @flashcards.count %></h1>
+      <%# upvote  %>
+      <%= button_to deck_votes_path(@deck, vote: { type: "Upvote" }) do %> 
+        <%= heroicon "hand-thumb-up", options: {class: "w-12 h-12 text-blue-600 mr-8 "} %>
+      <% end %>
+
+      <%# downvote %>
+      <%= button_to deck_votes_path(@deck, vote: { type: "Downvote" }) do %>
+        <%= heroicon "hand-thumb-down", options: {class: "w-12 h-12 text-red-600" }%>
+      <% end %>
+    </div>
+  
+  </h1>
 </div>
 
 <div class="">

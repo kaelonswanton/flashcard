@@ -1,11 +1,18 @@
 <div class="bg-gray-700 px-4 overflow-hidden">
   <div class=" text-4xl pb-24 flex flex-col items-center mx-20">
     <p class="mt-8 mb-20"> <%= @flashcard.front %> </p>
-    
+
+
+
     <%# Back Container %>
-    <div class="bg-color-primary flex justify-center w-full h-full">
-      <div class="opacity-0 hover:opacity-100  bg-color-primary w-64 h-64 flex items-center justify-center">
-        <p class=""> <%= @flashcard.back %> </p>
+    <%# DaisyUI Swap - bugged? %>
+    <div class="flex justify-center w-full h-full">
+      <div class= "w-64 h-64 flex items-center justify-center">
+        <label class="swap">
+          <input type="checkbox" />
+          <div class="swap-off">Click to reveal card</div>
+          <div class="swap-on"><%= @flashcard.back %> </div>
+        </label>
       </div>
     </div>
 
