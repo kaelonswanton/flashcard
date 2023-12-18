@@ -6,13 +6,13 @@
       <div class="flex justify-end">
       <% if @deck.user != current_user %>
         <%# upvote  %>
-        <%= button_to deck_votes_path(@deck, vote: { type: "Upvote" }) do %> 
+        <%= button_to deck_votes_path(@deck, vote: { type: "Upvote" }), name: "upvote" do %> 
           <%= @deck.votes.where(type: "Upvote").count %>
           <%= heroicon "hand-thumb-up", options: {class: "w-12 h-12 text-blue-600 mr-8 "} %>
         <% end %>
 
         <%# downvote %>
-        <%= button_to deck_votes_path(@deck, vote: { type: "Downvote" }) do %>
+        <%= button_to deck_votes_path(@deck, vote: { type: "Downvote" }), name: "downvote" do %>
           <%= @deck.votes.where(type: "Downvote").count %>
           <%= heroicon "hand-thumb-down", options: {class: "w-12 h-12 text-red-600" }%>
         <% end %>

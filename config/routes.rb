@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :searches, only: [:index]
   end
   resources :decks do
-    resources :votes, only: [:create, :destroy]
+    resources :votes, only: [:create]
   end
   devise_for :users, controllers: { registrations: 'users/registrations' }
   root "home#about"
