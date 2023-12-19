@@ -21,7 +21,7 @@ class DecksController < ApplicationController
     else
       @decks = current_user.decks
       @pagy, @decks = pagy(@current_user.decks.all, items: 5)  
-      render decks_path, status: :unprocessable_entity
+      render 'index', status: :unprocessable_entity
     end
   end
 
@@ -39,7 +39,7 @@ class DecksController < ApplicationController
     else
       @decks = current_user.decks
       @pagy, @decks = pagy(@current_user.decks.all, items: 5)  
-      render decks_path, status: :unprocessable_entity
+      render 'edit', status: :unprocessable_entity
     end
   end
 
@@ -73,7 +73,7 @@ class DecksController < ApplicationController
     flash[:message] = "Deck duplicated successfully!"
     redirect_to decks_path
   else
-    flash[:message] = "You already have a deck with that name!"
+    flash[:error] = "You already have a deck with that name!"
     redirect_to deck_path(original_deck)
   end
 end

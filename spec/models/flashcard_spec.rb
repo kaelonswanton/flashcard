@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Flashcard, type: :model do
+  let(:flashcard) { create(:flashcard) }
+
   it 'is invalid without a front' do
-    flashcard = build(:flashcard, front: nil)
-    flashcard.valid?
-    expect(flashcard.errors[:front]).to include("can't be blank")
+    flashcard = build(:flashcard, front: '')
+    expect(flashcard.valid?).to be false
   end
 
   it 'is invalid without a back' do

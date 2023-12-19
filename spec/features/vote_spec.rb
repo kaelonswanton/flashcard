@@ -1,5 +1,10 @@
 feature "Votes on a new deck" do
   let(:user) { User.create(username: 'test', email: 'test@example.com', password: 'password') }
+  before do
+    user
+    sign_in user
+    click_on "Decks"
+  end
 
   scenario "Votes on a new deck" do
     user2 = User.create(username: 'user2', email: 'user2@example.com', password: 'password')
@@ -13,3 +18,4 @@ feature "Votes on a new deck" do
     click_button 'upvote' #rspec will view this as a GET instead of a POST
     expect(user.upvotes.count).to eq(1)
   end
+end

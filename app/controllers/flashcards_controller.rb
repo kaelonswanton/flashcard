@@ -10,7 +10,7 @@ class FlashcardsController < ApplicationController
       flash[:message] = "Flashcard added successfully!"
       redirect_to new_flashcard_path
     else
-      render new_flashcard_path, status: :unprocessable_entity 
+      render 'new', status: :unprocessable_entity 
     end
   end
 
@@ -26,7 +26,7 @@ class FlashcardsController < ApplicationController
       flash[:message] = "Flashcard updated successfully!"
       redirect_to deck_path(@deck)
     else
-      render decks_path, status: :unprocessable_entity
+      render 'edit', status: :unprocessable_entity
     end
 
   end
