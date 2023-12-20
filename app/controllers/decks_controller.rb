@@ -59,24 +59,25 @@ class DecksController < ApplicationController
 
   # Deck Duplicate
   def duplicate_deck
-  original_deck = Deck.find(params[:id])
-  new_deck = original_deck.dup
-  new_deck.user = current_user
+    original_deck = Deck.find(params[:id])
+    new_deck = original_deck.dup
+    new_deck.user = current_user
+    new_deck.shared = false #keep decks auto unshared
 
-  if new_deck.save
-    original_deck.flashcards.each do |flashcard|
-      new_flashcard = flashcard.dup
-      new_flashcard.deck = new_deck
-      new_flashcard.difficulty = 4.0
-      new_flashcard.save
+    if new_deck.save
+      original_deck.flashcards.each do |flashcard|
+        new_flashcard = flashcard.dup
+        new_flashcard.deck = new_deck
+        new_flashcard.difficulty = 4.0
+        new_flashcard.save
+      end
+      flash[:message] = "Deck duplicated successfully!"
+      redirect_to decks_path
+    else
+      flash[:error] = "#{new_deck.errors.full_messages.join(', ')}"
+      redirect_to deck_path(original_deck)
     end
-    flash[:message] = "Deck duplicated successfully!"
-    redirect_to decks_path
-  else
-    flash[:error] = "You already have a deck with that name!"
-    redirect_to deck_path(original_deck)
   end
-end
   
   private
     def deck_params

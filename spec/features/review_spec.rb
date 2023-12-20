@@ -16,7 +16,4 @@ feature 'Review' do
     pending 'does something'
     raise 'In progress'
   end
-
-
-
 end

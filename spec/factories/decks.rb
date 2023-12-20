@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :deck do
-    user
-    name { "test" }
+    association :user, factory: :user
+    name { 'test' }
   end
 end
