@@ -14,9 +14,7 @@ feature 'Shared' do
 
   scenario "Unsuccessfully shares an empty deck" do
     user = create(:user)
-    puts user.inspect
     deck = create(:deck, user: user)
-    puts deck.inspect
     click_on 'Share'
     expect(deck.shared).to eq(false)
   end
@@ -24,8 +22,6 @@ feature 'Shared' do
   scenario "Shares a new deck" do
     deck = create(:deck, user: user)
     flashcard = create(:flashcard, deck: deck)
-    puts deck.inspect
-    puts flashcard.inspect
     click_on 'Share'
     #here flashcard and deck return as valid, but deck does not become shared
     expect(page).to have_content('Deck shared successfully!')
@@ -35,7 +31,6 @@ feature 'Shared' do
     deck = create(:deck, user: user)
     flashcard = create(:flashcard, deck: deck)
     deck.update!(shared: true)
-    puts deck.inspect
     click_on 'My Shared Decks'
     click_on 'Remove'
     expect(page).to have_content('Deck unshared successfully!')
@@ -54,5 +49,4 @@ feature 'Shared' do
     click_on 'Add Deck'
     expect(user.decks.count).to eq(2)
   end
-
 end

@@ -1,7 +1,6 @@
-# FactoryBot.define do
-#   factory :vote do
-#     type { "" }
-#     user { nil }
-#     deck { nil }
-#   end
-# end
+FactoryBot.define do
+  factory :vote do
+    association :user, factory: :user
+    association :deck, factory: :deck  
+  end
+end

@@ -36,4 +36,10 @@ feature 'Flashcard' do
     click_on 'Delete'
     expect(page).to have_content('Flashcard deleted successfully!')
   end
+
+  scenario 'Searches for a flashcard' do
+  end
+
+  scenario 'Sorts flashcards by difficulty' do
+  end
 end

@@ -2,18 +2,26 @@ require 'rails_helper'
 require 'spec_helper'
 
 feature 'Review' do
-  let(:user) { User.create(username: 'test', email: 'test@example.com', password: 'password') }
-  let!(:deck) { Deck.create(name: 'test') }
-
-  before do
-    sign_in(user)
-    create(:deck, user: user)
-    click_on "Decks"
-    click_on "Review"
+  let(:user) { create(:user) }
+  let(:deck) { create(:deck, user: user) }
+ 
+  scenario 'It creates a review on a flashcard' do
   end
 
-  scenario 'Reviews a deck' do
-    pending 'does something'
-    raise 'In progress'
-  end
+  # before do
+  #   sign_in(user)
+  #   @card_one = create(:flashcard, deck: deck, front: 'Card 1', difficulty: 1)
+  #   @card_two = create(:flashcard, deck: deck, front: 'Card 2', difficulty: 3)
+  #   deck.flashcards << @card_one << @card_two
+  #   click_on "Decks"
+  #   click_on "Review"
+  # end
+
+  # scenario 'Card order changes depending on difficulty' do
+  #   puts @card_one.inspect
+  #   puts @card_two.inspect
+  #   expect(page).to have_content('Card 2')
+  #   click_on 'Easy'
+  #   expect(page).to have_content('Card 1')
+  # end
 end
