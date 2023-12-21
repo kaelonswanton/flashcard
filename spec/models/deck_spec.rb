@@ -17,18 +17,6 @@ RSpec.describe Deck, type: :model do
     it { should validate_uniqueness_of(:name).scoped_to(:user_id).case_insensitive }
   end
 
-  # it 'is invalid without a name' do
-  #   deck.name = nil
-  #   expect(deck).to_not be_valid
-  # end
-
-  # it 'is invalid with a duplicate name' do
-  #   user = create(:user)
-  #   create(:deck, user: user)
-  #   deck2 = build(:deck, user: user)
-  #   expect(deck2).to_not be_valid
-  # end
-
   it 'cannot be shared if empty' do
     deck.flashcards = []
     deck.shared = true

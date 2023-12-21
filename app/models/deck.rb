@@ -19,6 +19,7 @@ class Deck < ApplicationRecord
 
   def cannot_share_empty_deck
     if shared && flashcards.empty?
+      #puts error messsages in console
       errors.add(:base, "Deck cannot be shared if empty.")
     end
   end

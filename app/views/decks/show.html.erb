@@ -6,7 +6,7 @@
       <div class="flex justify-end">
       <% if @deck.user != current_user %>
         <%# upvote  %>
-        <%= button_to deck_votes_path(@deck, vote: { type: "Upvote" }), name: "upvote" do %> 
+        <%= button_to deck_votes_path(@deck, vote: { type: "Upvote" }), method: :post, id: "upvote" do %> 
           <%= @deck.votes.where(type: "Upvote").count %>
           <%= heroicon "hand-thumb-up", options: {class: "w-12 h-12 text-blue-600 mr-8 "} %>
         <% end %>
@@ -63,7 +63,7 @@
 <% if current_user == @deck.user %>
   <div class="text-color-primary hover:text-color-secondary mt-8"><%= link_to "Click here to add a card", new_flashcard_path  %> </div>
 <% else %>
-    <div class="btn bg-color-primary hover:bg-color-secondary mt-8"> <%= link_to 'Add Deck', duplicate_deck_path(@deck), method: :post %> </div>
+    <div class="btn bg-color-primary hover:bg-color-secondary mt-8"> <%= button_to 'Add Deck', duplicate_deck_path(@deck), method: :post %> </div>
 <% end %>
 <br>
 <br>

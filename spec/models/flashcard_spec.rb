@@ -45,25 +45,3 @@ RSpec.describe Flashcard, type: :model do
     expect(unready_card.ready_for_review?).to eq(false)
   end
 end
-  # it 'is invalid without a front' do
-  #   flashcard = build(:flashcard, front: '')
-  #   expect(flashcard).to_not be_valid
-  # end
-
-  # it 'is invalid without a back' do
-  #   flashcard = build(:flashcard, back: nil)
-  #   expect(flashcard).to_not be_valid
-  # end
-
-  # it 'is invalid with a duplicate front in the same deck' do
-  #   create(:flashcard, front: 'front', deck: deck)
-  #   flashcard2 = build(:flashcard, front: 'front', deck: deck)
-  #   expect(flashcard2).to_not be_valid
-  # end
-
-  # it 'is valid with a duplicate back in the same deck' do
-  #   #deck
-  #   flashcard = create(:flashcard, back: 'back', deck: deck)
-  #   flashcard2 = build(:flashcard, back: 'back', deck: deck)
-  #   expect(flashcard2).to be_valid
-  # end

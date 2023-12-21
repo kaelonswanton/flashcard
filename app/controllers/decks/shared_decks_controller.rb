@@ -10,8 +10,8 @@ module Decks
         flash[:message] = @deck.shared ? "Deck shared successfully!" : "Deck unshared successfully!" 
         redirect_to decks_shared_decks_path
       else
-        flash[:error] = @deck.errors.full_messages.join(", ")
-        redirect_to decks_path, status: :unprocessable_entity
+         flash[:error] = @deck.errors.full_messages.join(", ")
+        redirect_to decks_path
       end
     end
   
