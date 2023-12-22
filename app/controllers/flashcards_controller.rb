@@ -32,11 +32,15 @@ class FlashcardsController < ApplicationController
   end
 
   def destroy
-    flashcard = Flashcard.find(params[:id])
-    deck_id = flashcard.deck.id
-    flashcard.destroy
-    flash[:message] = "Flashcard deleted successfully!"
-    redirect_to deck_path(deck_id)
+    @flashcard = Flashcard.find(params[:id])
+    deck_id = @flashcard.deck.id
+    if @flashcard.destroy
+      flash[:message] = "Flashcard deleted successfully!"
+      redirect_to deck_path(deck_id)
+    else
+      flash[:error] = @flashcard.errors.full_messages.join(", ")
+      redirect_to deck_path(deck_id)
+    end
   end
 
 

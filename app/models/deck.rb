@@ -1,9 +1,4 @@
 class Deck < ApplicationRecord
-  belongs_to :user
-  has_many :flashcards, dependent: :destroy
-  has_many :votes, dependent: :destroy
-
-  # Ransack gem - attributes allowed to be search
   def self.ransackable_attributes(auth_object = nil)
     ["name"]
   end
@@ -11,9 +6,12 @@ class Deck < ApplicationRecord
     ["user"]
   end
 
+  belongs_to :user
+  has_many :flashcards, dependent: :destroy
+  has_many :votes, dependent: :destroy
+
   #uniqueness: { scope: :user_id } makes it so validations only occur for the specific user
   validates :name, presence: true, length: { maximum: 30 }, uniqueness: { scope: :user_id, case_sensitive: false }
-  
   validate :cannot_share_empty_deck
   validate :cannot_share_already_shared_deck
 
@@ -24,10 +22,16 @@ class Deck < ApplicationRecord
     end
   end
 
+    #deck cannot be double shared
   def cannot_share_already_shared_deck
-    #this is to ensure a deck can be shared/name edited, but can't be double shared
-    if previous_changes.include?("shared") && shared
+    if !will_save_change_to_shared? && shared
       errors.add(:base, "Deck is already shared.")
     end
+  end
+
+  def deck_score
+    upvotes = votes.where(type: "Upvote").count
+    downvotes = votes.where(type: "Downvote").count
+    upvotes - downvotes
   end
 end

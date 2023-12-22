@@ -35,4 +35,12 @@ RSpec.describe Deck, type: :model do
     deck.shared = true
     expect(deck).to_not be_valid
   end
+
+  it 'counts #deck_score' do
+    deck
+    2.times { deck.votes << Vote.create(type: "Downvote") }
+    deck.votes << Vote.create(type: "Upvote")
+    deck.save
+    expect(deck.deck_score).to eq(-1)
+  end
 end

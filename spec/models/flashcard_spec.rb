@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe Flashcard, type: :model do
-  let(:deck) { build(:deck) }
   let(:user) { build(:user) }
+  let(:deck) { build(:deck, user: user) }
   let(:flashcard) { build(:flashcard, deck: deck) }
 
   describe 'associations' do
@@ -43,5 +43,12 @@ RSpec.describe Flashcard, type: :model do
     unready_card = deck.flashcards.first
     unready_card.update(difficulty: 1.0, updated_at: Time.now)
     expect(unready_card.ready_for_review?).to eq(false)
+  end
+
+  it '#cannot_destroy_flashcard_when_deck_is_shared' do
+    flashcard = create(:flashcard, deck: deck)
+    deck.update(shared: true)
+    flashcard.destroy
+    expect(flashcard.persisted?).to eq(true)
   end
 end

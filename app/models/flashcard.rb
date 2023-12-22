@@ -5,16 +5,25 @@ class Flashcard < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     ["deck", "reviews", "user"]
   end
+  before_destroy :cannot_destroy_flashcard_when_deck_is_shared
 
   belongs_to :deck
   has_one :user, through: :deck
   has_many :reviews, dependent: :destroy
+  before_create :set_default_difficulty
+  after_touch :recalculate_difficulty
 
   validates :front, presence: true, length: { maximum: 100 }, uniqueness: { scope: :deck_id }
   validates :back, presence: true, length: { maximum: 100 }
-  
-  before_create :set_default_difficulty
-  after_touch :recalculate_difficulty
+  validate :cannot_destroy_flashcard_when_deck_is_shared, on: [:destroy]
+
+  #triggered on create, update, and destroy; cannot change flashcard if deck=shared
+  def cannot_destroy_flashcard_when_deck_is_shared
+    if deck.shared
+      errors.add(:base, "Flashcards cannot be deleted if deck is shared.")
+      throw(:abort)
+    end
+  end
 
   def fresh_card?
     self.reviews.count < 3
