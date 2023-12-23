@@ -6,11 +6,11 @@ class VotesController < ApplicationController
 
     # delete if reclicked
     if existing_vote && existing_vote.type == vote_type
-      existing_vote.delete
+      existing_vote.destroy
       redirect_to deck_path(@deck)
     # create a vote
     else
-      existing_vote&.delete
+      existing_vote&.destroy
       @vote = @deck.votes.build(vote_params) 
       @vote.user = current_user
       @vote.save

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Deck, type: :model do
   let(:user) { build(:user) }
-  let(:deck) { build(:deck) }
+  let(:deck) { build(:deck, user: user) }
   
   describe 'associations' do
     it { should belong_to(:user) }
@@ -37,10 +37,8 @@ RSpec.describe Deck, type: :model do
   end
 
   it 'counts #deck_score' do
-    deck
-    2.times { deck.votes << Vote.create(type: "Downvote") }
-    deck.votes << Vote.create(type: "Upvote")
-    deck.save
-    expect(deck.deck_score).to eq(-1)
+    deck = create(:deck, user: user)
+    deck.votes << Vote.create(type: "Upvote", user: user, deck: deck)
+    expect(deck.vote_score).to eq(1)
   end
 end

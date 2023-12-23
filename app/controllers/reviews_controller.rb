@@ -6,8 +6,8 @@ class ReviewsController < ApplicationController
       redirect_to decks_path and return #and return stops further code from executing
     end
     if session[:fetched_flashcards].nil?
-      #Checks if any flashcards are ready for review
-      ready_flashcards = @deck.flashcards.select { |flashcard| flashcard.ready_for_review? }
+      #Checks if any flashcards are ready for review or is new flashcard
+      ready_flashcards = @deck.flashcards.select { |flashcard| flashcard.ready_for_review? || flashcard.new_flashcard? }
       if ready_flashcards.any?
         session[:fetched_flashcards] = ready_flashcards.first(20).pluck(:id)
       else
@@ -34,6 +34,7 @@ class ReviewsController < ApplicationController
   
     if @page_number == session[:fetched_flashcards].length - 1
       session.delete(:fetched_flashcards)
+      flash[:message] = "Review Complete!"
       redirect_to decks_path
     else
       redirect_to deck_review_path(@deck, id: @page_number + 1)

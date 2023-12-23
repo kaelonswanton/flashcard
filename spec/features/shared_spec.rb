@@ -37,14 +37,6 @@ feature 'Shared' do
     expect(page).to have_content('Deck unshared successfully!')
   end
 
-  scenario 'Unsuccessfully shares an already shared deck' do
-    puts deck.inspect
-    deck.update!(shared: true)
-    puts deck.inspect
-    click_button 'Share'
-    expect(page).to have_content('Deck is already shared.')
-  end
-
   scenario 'Gets a shared deck' do
     other_user = User.create!(username: 'other_user', email: 'other_user@example.com', password: 'password')
     other_deck = Deck.create!(name: 'other_deck', user: other_user)

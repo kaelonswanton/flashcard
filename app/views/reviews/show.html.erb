@@ -1,9 +1,7 @@
+<%= render '/shared/flash'%>
 <div class="bg-gray-700 px-4 overflow-hidden">
   <div class=" text-4xl pb-24 flex flex-col items-center mx-20">
     <p class="mt-8 mb-20"> <%= @flashcard.front %> </p>
-
-
-
     <%# Back Container %>
     <%# DaisyUI Swap - bugged? %>
     <div class="flex justify-center w-full h-full">
@@ -21,15 +19,7 @@
   <%# Update Flashcard %>
    <div class="flex justify-center"><%= render 'shared/update_card_form'%></div>
 
-  <div class="flex justify-between mt-20"> <div class="flex justify-start items-end">
-      <%= link_to 'Previous Card', deck_review_path(@deck, id: params[:id].to_i - 1) unless params[:id].to_i == 0 %>
-    </div>
-    <div class="flex justify-end items-end pb-2">
-      <% if params[:id].to_i < session[:fetched_flashcards].count - 1 %>
-        <%= link_to 'Next Card', deck_review_path(@deck, id: params[:id].to_i + 1) %>
-      <% else %>
-        <%= link_to 'Finish Deck', decks_path %>
-      <% end %>   
-    </div>
+  <div class="flex justify-end p-2 mt-20"> 
+    Cards Remaining: <%= session[:fetched_flashcards].length - @page_number  %>
   </div>
 </div>
